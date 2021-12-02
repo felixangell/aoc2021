@@ -39,7 +39,7 @@ fun day1() {
     println(increases.size)
 }
 
-fun day2() {
+fun day1extra() {
     val diff = fun(curr: Int, last: Int): Measurement =
         when {
             curr < last -> Measurement.Decrease
@@ -77,7 +77,7 @@ fun day2() {
 }
 
 fun main() {
-    day2()
+    day1extra()
 }
 
 /*
