@@ -1,14 +1,6 @@
 import aoc2021.Resource
 
-//val input = Resource.loadResource("/day2.txt")
-val input = listOf(
-    "forward 5",
-    "down 5",
-    "forward 8",
-    "up 3",
-    "down 8",
-    "forward 2"
-)
+val input = Resource.loadResource("/day2.txt")
 
 fun day2() {
     val parts = input.map {
@@ -41,25 +33,21 @@ fun day2extra() {
     var aim = 0
     parts.forEach { (dir, dist) ->
         when (dir) {
-            "up" -> {
-                depth -= dist
-                aim -= dist
-            }
-            "down" -> {
-                depth += dist
-                aim += dist
-            }
+            "up" -> aim -= dist
+            "down" -> aim += dist
             "forward" -> {
                 horizontal += dist
-                depth += aim * dist
+                val depthDelta = aim * dist
+                println(depthDelta)
+                depth += depthDelta
             }
         }
     }
 
     val result = horizontal * depth
-    println("result = $result")
+    println("$horizontal x $depth = $result")
 }
 
 fun main() {
-    day2()
+    day2extra()
 }
