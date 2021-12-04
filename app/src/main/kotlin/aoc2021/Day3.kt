@@ -2,7 +2,21 @@ package aoc2021
 
 import kotlin.math.pow
 
-val input = Resource.loadResource("/day3.txt")
+//val input = Resource.loadResource("/day3.txt")
+private val input = listOf(
+    "00100",
+    "11110",
+    "10110",
+    "10111",
+    "10101",
+    "01111",
+    "00111",
+    "11100",
+    "10000",
+    "11001",
+    "00010",
+    "01010",
+)
 
 fun Array<Int>.bitsToInt(): Int = this.mapIndexed { index, i ->
     when (i) {
@@ -28,6 +42,33 @@ fun day3() {
     println("$gamma vs $epsilon = ${gamma * epsilon}")
 }
 
+fun day3extra() {
+    val data = input
+        .map { it.toCharArray().map { ch -> ch.digitToInt() } }
+
+    val col = fun(at: Int) = data.map { it[at] }
+
+    val filterBy = fun(data: MutableList<List<Int>>): MutableList<List<Int>> {
+        data[0].indices.forEach { i ->
+            val cols = col(i)
+            val commonBits = cols.groupingBy { it }.eachCount()
+            val mostCommon = commonBits.maxByOrNull { it.value }?.key!!
+            println("mc $mostCommon for $i")
+
+            val badRows = data
+                .mapNotNull { row -> if (row[i] != mostCommon) row else null }
+            badRows.forEach { data.remove(it) }
+        }
+        return data
+    }
+
+    val mostCommon = filterBy(data.toMutableList())
+    println(mostCommon)
+
+    // oxygen = final filtered by most common with a 1
+    // c02 = final filtered by least common with a 0
+}
+
 fun main() {
-    day3()
+    day3extra()
 }
