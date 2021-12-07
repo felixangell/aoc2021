@@ -1,6 +1,6 @@
 import aoc2021.Resource
 
-val input = Resource.loadResource("/day2.txt")
+private val input = Resource.loadResource("/day2.txt")
 
 fun day2() {
     val parts = input.map {

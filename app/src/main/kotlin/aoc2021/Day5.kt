@@ -4,7 +4,7 @@ import java.lang.Integer.signum
 import kotlin.math.abs
 import kotlin.math.max
 
-val sample = listOf(
+private val sample = listOf(
     "0,9 -> 5,9",
     "8,0 -> 0,8",
     "9,4 -> 3,4",
